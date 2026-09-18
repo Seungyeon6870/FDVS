@@ -37,10 +37,6 @@
 
     <!-- EDIT: replace the href="#" values below with the real URLs -->
     <nav class="buttons">
-      <a class="btn" href="https://github.com/Seungyeon6870/FDVS.git" data-link="code">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-        <span>Code</span>
-      </a>
       <a class="btn" href="https://drive.google.com/file/d/1IHLXDkrg20cDrS-4_5TcbQRPvO5CH3O2/view?usp=sharing" data-link="dataset">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c4.4 0 8 1.3 8 3v12c0 1.7-3.6 3-8 3s-8-1.3-8-3V6c0-1.7 3.6-3 8-3zm6 7.6c-1.6.9-4 1.4-6 1.4s-4.4-.5-6-1.4v3c.3.6 2.6 1.6 6 1.6s5.7-1 6-1.6v-3zM12 5C8.6 5 6.3 6 6 6.6 6.3 7.2 8.6 8.2 12 8.2s5.7-1 6-1.6C17.7 6 15.4 5 12 5zm0 14c3.4 0 5.7-1 6-1.6v-2.8c-1.6.9-4 1.4-6 1.4s-4.4-.5-6-1.4v2.8c.3.6 2.6 1.6 6 1.6z"/></svg>
         <span>Dataset</span>
@@ -57,15 +53,22 @@
   </div>
 </header>
 
-<!-- ══════════════════════════ 4. Teaser: Unstable vs. Ours ══════════════════════════ -->
-<section class="section section--tight">
+<!-- ══════════════════════════ 4. Qualitative Results ══════════════════════════ -->
+<section class="section section--alt">
   <div class="container">
+    <h2>Qualitative Results</h2>
+    <p class="section-lead">
+      Choose a baseline to display on the left, and a scene from the strip below. The right half is
+      always our result.
+    </p>
+
+    <div class="method-picker">
+      <span class="method-picker__label">Comparison Method:</span>
+      <div class="method-picker__options" id="method-options"></div>
+    </div>
+
     <div class="player-card">
-      <p class="player-caption">
-        Our method stabilizes video reliably even when a foreground object occupies a large portion
-        of the frame and moves independently of the background.
-      </p>
-      <div class="player" id="teaser-player"></div>
+      <div class="player" id="results-player"></div>
     </div>
   </div>
 </section>
@@ -112,113 +115,6 @@
         path stays continuous even when the two estimators are switched between frames.
       </figcaption>
     </figure>
-  </div>
-</section>
-
-<!-- ══════════════════════════ 6b. Results on FDVS ══════════════════════════ -->
-<section class="section">
-  <div class="container container--narrow">
-    <h3 class="results-title">Results on FDVS</h3>
-    <p class="results-sub">
-      Video-level averages over the 56 videos that every method completed. Bundled Camera Paths
-      failed on videos 22, 23, 58, 60 and 61, so those are excluded for all methods.
-    </p>
-
-    <div class="results">
-      <div class="results__head">
-        <span>BIFMAE<sub>avg</sub> &mdash; lower is better</span>
-        <span>Ours better on</span>
-      </div>
-
-      <div class="results__row results__row--ours">
-        <span class="results__name">Ours</span>
-        <span class="results__track"><span class="results__bar" style="width:64.9%"></span></span>
-        <span class="results__value">7.14</span>
-        <span class="results__win results__win--none">&mdash;</span>
-      </div>
-
-      <div class="results__row">
-        <span class="results__name">GlobalFlowNet-Affine</span>
-        <span class="results__track"><span class="results__bar" style="width:66.4%"></span></span>
-        <span class="results__value">7.30</span>
-        <span class="results__win">
-          <span class="results__wintrack"><span style="width:51.8%"></span></span>
-          <span class="results__winnum">29/56</span>
-        </span>
-      </div>
-
-      <div class="results__row">
-        <span class="results__name">Bundled Camera Paths</span>
-        <span class="results__track"><span class="results__bar" style="width:73.5%"></span></span>
-        <span class="results__value">8.08</span>
-        <span class="results__win">
-          <span class="results__wintrack"><span style="width:80.4%"></span></span>
-          <span class="results__winnum">45/56</span>
-        </span>
-      </div>
-
-      <div class="results__row">
-        <span class="results__name">DUT</span>
-        <span class="results__track"><span class="results__bar" style="width:74.3%"></span></span>
-        <span class="results__value">8.17</span>
-        <span class="results__win">
-          <span class="results__wintrack"><span style="width:82.1%"></span></span>
-          <span class="results__winnum">46/56</span>
-        </span>
-      </div>
-
-      <div class="results__row">
-        <span class="results__name">DIFRINT</span>
-        <span class="results__track"><span class="results__bar" style="width:83.8%"></span></span>
-        <span class="results__value">9.22</span>
-        <span class="results__win">
-          <span class="results__wintrack"><span style="width:98.2%"></span></span>
-          <span class="results__winnum">55/56</span>
-        </span>
-      </div>
-
-      <div class="results__row results__row--input">
-        <span class="results__name">Unstable input</span>
-        <span class="results__track"><span class="results__bar" style="width:93.7%"></span></span>
-        <span class="results__value">10.30</span>
-        <span class="results__win">
-          <span class="results__wintrack"><span style="width:100%"></span></span>
-          <span class="results__winnum">56/56</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════ 7. Qualitative results ══════════════════════════ -->
-<section class="section section--alt">
-  <div class="container">
-    <h2>Qualitative Results</h2>
-    <p class="section-lead">
-      Choose a baseline to display on the left, and a scene from the strip below. The right half is
-      always our result.
-    </p>
-
-    <div class="method-picker">
-      <span class="method-picker__label">Comparison Method:</span>
-      <div class="method-picker__options" id="method-options"></div>
-    </div>
-
-    <div class="player-card">
-      <div class="player" id="results-player"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════ 9. Acknowledgements ══════════════════════════ -->
-<section class="section section--alt">
-  <div class="container container--narrow">
-    <h2>Acknowledgements</h2>
-    <p class="ack">
-      The present research has been conducted by the Research Grant of Kwangwoon University in 2026.
-      This research was supported by the ANCHOR through the Seoul ANCHOR Center, funded by the
-      Ministry of Education (MOE) and the Seoul Metropolitan Government (2026-ANCHOR-01-004-07).
-    </p>
   </div>
 </section>
 
